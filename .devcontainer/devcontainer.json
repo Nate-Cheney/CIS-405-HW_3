@@ -1,0 +1,39 @@
+{
+    "name": "CIS-405-HW_3",
+    "build": {
+        "context": "..",
+        "dockerfile": "Dockerfile"
+    },
+    "remoteUser": "vscode",
+    "mounts": [
+        "source=/home/nate/.ssh/agent,target=/ssh-agent-dir,type=bind"
+    ],
+    "postCreateCommand": "chmod +x ./.devcontainer/setup.sh && ./.devcontainer/setup.sh",
+    "postStartCommand": "echo 'export SSH_AUTH_SOCK=$(ls /ssh-agent-dir/*.agent.* | head -1)' >> ~/.bashrc",
+    "runArgs": [],
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.12"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "workbench.colorTheme": "Default Dark Modern",
+                "workbench.sideBar.location": "right",
+                "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python"
+            },
+            "extensions": [
+                "ms-toolsai.jupyter",
+                "ms-toolsai.vscode-jupyter-cell-tags",
+                "ms-toolsai.jupyter-keymap",
+                "ms-toolsai.jupyter-renderers",
+                "ms-toolsai.vscode-jupyter-slideshow",
+                "ms-python.vscode-pylance",
+                "ms-python.python",
+                "ms-python.debugpy",
+                "ms-toolsai.vscode-jupyter-powertoys"
+            ]
+        }
+    }
+}
